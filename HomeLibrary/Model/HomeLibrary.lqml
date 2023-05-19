@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database Name="home_library" EntityNamespace="HomeLibrary" ContextNamespace="HomeLibrary" Class="DataContextHomeLibrary" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ed:Guid="43b26a55-787e-4e90-aa9a-07032c191f5a" Provider="Devart.Data.MySql.Linq.Provider.MySqlDataProvider, Devart.Data.MySql.Linq" Extended="true" xmlns="http://schemas.devart.com/linqconnect/mapping">
+  <Connection Mode="ConnectionString" ConnectionString="User Id=User1;Password=dba2ilv;Host=127.0.0.1;Database=home_library;Persist Security Info=True" Provider="Devart.Data.MySql" />
+  <Table Name="home_library.Books" Member="Books">
+    <Type Name="Book" ed:Guid="252a78a3-ddf7-4154-8cb2-f6c4e16955b1">
+      <Column Name="BookID" Type="System.Int32" AutoSync="OnInsert" DbType="int(9) NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="211f0ef7-a75b-497a-a698-db499ff855d3" />
+      <Column Name="Title" Type="System.String" DbType="longtext NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="6488252a-3d2b-4c3a-8d37-56e1ccbb45d2" />
+      <Column Name="GenreID" Type="System.Int32" DbType="int(9) NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="ef10d0e6-a74d-472e-a563-6f0392885f87" />
+      <Column Name="AuthorID" Type="System.Int32" DbType="int(9) NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="f5c244fa-ac87-4234-8fc4-856fff7d788e" />
+      <Column Name="PublisherID" Type="System.Int32" DbType="int(9) NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="c81235de-fc31-4d72-9ca5-ed5156995bb6" />
+      <Column Name="ISBN" Type="System.String" DbType="longtext NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="d1835bac-c777-4c60-b272-2ed15ed54497" />
+      <Column Name="PublicationYear" Type="System.UInt16" DbType="smallint(5) UNSIGNED NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="f38ebce9-1ed3-443b-825e-88744a60be8e" />
+      <Column Name="Pages" Type="System.UInt16" DbType="smallint(5) UNSIGNED NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="f83b2b88-5a16-488e-ba90-6ed0953ad25d" />
+      <Association Name="Author_Book" ed:AssociationGuid="09d31ded-3082-4f88-ae6a-2c4738629164" Member="Author" ed:Guid="46d2ab8a-f26d-49e2-b4c3-18c2ca8e6c42" Modifier="Virtual" ThisKey="AuthorID" OtherKey="AuthorID" Type="Author" IsForeignKey="true" />
+      <Association Name="Publisher_Book" ed:AssociationGuid="4d11c450-2aa2-4ee8-8567-08d7cc14d969" Member="Publisher" ed:Guid="7180d580-63b7-48a5-b11a-c5b7e4ff20f6" Modifier="Virtual" ThisKey="PublisherID" OtherKey="PublisherID" Type="Publisher" IsForeignKey="true" />
+      <Association Name="Book_Checkout" ed:AssociationGuid="ab5d120b-eb0f-44d0-9a13-a0062dde78ed" Member="Checkout" ed:Guid="5a4c3aea-4d6f-4f1d-8c5b-507b53e1eb77" Modifier="Virtual" ThisKey="BookID" OtherKey="BookID" Type="Checkout" Cardinality="One" />
+      <Association Name="Genre_Book" ed:AssociationGuid="2f7d2737-bec3-41bc-ba89-613e9eff42ac" Member="Genre" ed:Guid="86c0a119-bc5d-40bd-ba0c-9d8478fd5a94" ThisKey="GenreID" OtherKey="GenreID" Type="Genre" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="home_library.Authors" Member="Authors">
+    <Type Name="Author" ed:Guid="df711e23-e46d-4647-97d3-6984c3a54942">
+      <Column Name="AuthorID" Type="System.Int32" AutoSync="OnInsert" DbType="int(9) NOT NULL" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="6a22699e-f785-4b33-b35f-8f0b80ec59be" />
+      <Column Name="Name" Type="System.String" DbType="longtext NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="b9674abe-67bd-4b48-919c-2750af8d6845" />
+      <Association Name="Author_Book" ed:AssociationGuid="09d31ded-3082-4f88-ae6a-2c4738629164" Member="Books" ed:Guid="df087c83-8d95-4600-96dd-cab78785a3fe" Modifier="Virtual" ThisKey="AuthorID" OtherKey="AuthorID" Type="Book" />
+    </Type>
+  </Table>
+  <Table Name="home_library.Publishers" Member="Publishers">
+    <Type Name="Publisher" ed:Guid="a16bc1d7-c383-4899-9c77-861b50f70202">
+      <Column Name="PublisherID" Type="System.Int32" AutoSync="OnInsert" DbType="int(9) NOT NULL" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="89027040-bb32-40a2-895c-250c36cbc441" />
+      <Column Name="Name" Type="System.String" DbType="longtext NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="8a7aafc5-c6c9-438f-aaa5-94ac442bf295" />
+      <Association Name="Publisher_Book" ed:AssociationGuid="4d11c450-2aa2-4ee8-8567-08d7cc14d969" Member="Books" ed:Guid="1a7fa4dd-1424-4e8e-a36f-e8b4d26ad090" Modifier="Virtual" ThisKey="PublisherID" OtherKey="PublisherID" Type="Book" />
+    </Type>
+  </Table>
+  <Table Name="home_library.People" Member="People">
+    <Type Name="Person" ed:Guid="2c31ae0b-56d6-4db7-940d-60e519fd352f">
+      <Column Name="PersonID" Type="System.Int32" AutoSync="OnInsert" DbType="int(9) NOT NULL" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="7193f8f2-b554-4ec6-a337-1bfe1c72b3fa" />
+      <Column Name="Name" Type="System.String" DbType="longtext NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="3c779ac3-a8c2-4e86-b6d6-69bf0e84f3a9" />
+      <Association Name="Person_Checkout" ed:AssociationGuid="e6ec9314-d89c-43fc-9a02-05bb9faf0d37" Member="Checkout" ed:Guid="c64c1bfa-de73-4bba-8596-fe0d67124387" Modifier="Virtual" ThisKey="PersonID" OtherKey="PersonID" Type="Checkout" />
+    </Type>
+  </Table>
+  <Table Name="home_library.Checkouts" Member="Checkouts">
+    <Type Name="Checkout" ed:Guid="29f356c0-3c0a-425c-bdb9-37fbaf15eb43">
+      <Column Name="CheckoutID" Type="System.Int32" AutoSync="OnInsert" DbType="int(9) NOT NULL" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="592177d0-1fa0-4c16-9abb-32b9c9f6fb94" />
+      <Column Name="PersonID" Type="System.Int32" DbType="int(9) NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="d6a1510f-3e18-4838-8c53-75fb7be521fa" />
+      <Column Name="BookID" Type="System.Int32" DbType="int(9) NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="3a97e46c-ef9b-4870-8c36-45d9578a7d76" />
+      <Association Name="Book_Checkout" ed:AssociationGuid="ab5d120b-eb0f-44d0-9a13-a0062dde78ed" Member="Book" ed:Guid="9ad4a81b-152c-4177-80dc-aae6b6a5d702" Modifier="Virtual" ThisKey="BookID" OtherKey="BookID" Type="Book" DeleteOnNull="true" IsForeignKey="true" Cardinality="One" />
+      <Association Name="Person_Checkout" ed:AssociationGuid="e6ec9314-d89c-43fc-9a02-05bb9faf0d37" Member="Person" ed:Guid="b3c6beb5-6c90-40dd-9f6e-78037ad28b56" Modifier="Virtual" ThisKey="PersonID" OtherKey="PersonID" Type="Person" DeleteOnNull="true" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="home_library.Genres" Member="Genres">
+    <Type Name="Genre" ed:Guid="384658db-8314-482f-a857-ebbd467c8361">
+      <Column Name="GenreID" Type="System.Int32" AutoSync="OnInsert" DbType="int(9) NOT NULL" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="9ed142a7-7f8f-4003-a14b-f9fd9b457ee2" />
+      <Column Name="Name" Type="System.String" DbType="longtext NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="fbe70d07-d64b-40cb-b4bd-0018bdad075e" />
+      <Association Name="Genre_Book" ed:AssociationGuid="2f7d2737-bec3-41bc-ba89-613e9eff42ac" Member="Books" ed:Guid="889bc2b0-73c9-47d3-aad9-9fea644cd2b1" ThisKey="GenreID" OtherKey="GenreID" Type="Book" />
+    </Type>
+  </Table>
+</Database>

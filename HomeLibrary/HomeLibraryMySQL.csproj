@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Devart.Data">
+      <HintPath>Libraries\Devart.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.Linq">
+      <HintPath>Libraries\Devart.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.Linq.Vs">
+      <HintPath>Libraries\Devart.Data.Linq.Vs.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.Linq.Web">
+      <HintPath>Libraries\Devart.Data.Linq.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.Linq.Web.DynamicData">
+      <HintPath>Libraries\Devart.Data.Linq.Web.DynamicData.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.MySql">
+      <HintPath>Libraries\Devart.Data.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.MySql.Linq">
+      <HintPath>Libraries\Devart.Data.MySql.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.Oracle.Linq">
+      <HintPath>Libraries\Devart.Data.Oracle.Linq.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Model\HomeLibrary.info">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HomeLibrary.lqml</DependentUpon>
+    </None>
+    <None Update="Model\HomeLibrary.lqml">
+      <Generator>DevartLinqToSqlGenerator</Generator>
+      <LastGenOutput>HomeLibrary.info</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>
