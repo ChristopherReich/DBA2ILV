@@ -20,8 +20,8 @@ namespace HomeLibrary
             this.context = _context;
             this.book = _book;
             personBindingSource.DataSource = context.People;
-            lbBook.Text = $"Name: {book.Title.ToString()}";
-            lbISBN.Text = $"Name: {book.ISBN.ToString()}";
+            lbBook.Text = $"Name: {book.Title}";
+            lbISBN.Text = $"Name: {book.ISBN}";
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)

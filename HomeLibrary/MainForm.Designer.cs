@@ -50,11 +50,11 @@
             genresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             publishersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             personsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            insertDatasetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             loanedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             btLoan = new System.Windows.Forms.Button();
             peopleBindingSource = new System.Windows.Forms.BindingSource(components);
-            insertDatasetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)authorBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)genreBindingSource).BeginInit();
@@ -209,30 +209,37 @@
             // authorsToolStripMenuItem
             // 
             authorsToolStripMenuItem.Name = "authorsToolStripMenuItem";
-            authorsToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            authorsToolStripMenuItem.Size = new System.Drawing.Size(293, 44);
             authorsToolStripMenuItem.Text = "Authors";
             authorsToolStripMenuItem.Click += authorsToolStripMenuItem_Click;
             // 
             // genresToolStripMenuItem
             // 
             genresToolStripMenuItem.Name = "genresToolStripMenuItem";
-            genresToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            genresToolStripMenuItem.Size = new System.Drawing.Size(293, 44);
             genresToolStripMenuItem.Text = "Genres";
             genresToolStripMenuItem.Click += genresToolStripMenuItem_Click;
             // 
             // publishersToolStripMenuItem
             // 
             publishersToolStripMenuItem.Name = "publishersToolStripMenuItem";
-            publishersToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            publishersToolStripMenuItem.Size = new System.Drawing.Size(293, 44);
             publishersToolStripMenuItem.Text = "Publishers";
             publishersToolStripMenuItem.Click += publishersToolStripMenuItem_Click;
             // 
             // personsToolStripMenuItem
             // 
             personsToolStripMenuItem.Name = "personsToolStripMenuItem";
-            personsToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            personsToolStripMenuItem.Size = new System.Drawing.Size(293, 44);
             personsToolStripMenuItem.Text = "Persons";
             personsToolStripMenuItem.Click += personsToolStripMenuItem_Click;
+            // 
+            // insertDatasetToolStripMenuItem
+            // 
+            insertDatasetToolStripMenuItem.Name = "insertDatasetToolStripMenuItem";
+            insertDatasetToolStripMenuItem.Size = new System.Drawing.Size(293, 44);
+            insertDatasetToolStripMenuItem.Text = "Insert Dataset";
+            insertDatasetToolStripMenuItem.Click += insertDatasetToolStripMenuItem_Click;
             // 
             // loanedToolStripMenuItem
             // 
@@ -246,6 +253,7 @@
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             helpToolStripMenuItem.Size = new System.Drawing.Size(84, 38);
             helpToolStripMenuItem.Text = "Help";
+            helpToolStripMenuItem.Click += helpToolStripMenuItem_Click;
             // 
             // btLoan
             // 
@@ -257,13 +265,6 @@
             btLoan.Text = "Loan Book";
             btLoan.UseVisualStyleBackColor = true;
             btLoan.Click += btLoan_Click;
-            // 
-            // insertDatasetToolStripMenuItem
-            // 
-            insertDatasetToolStripMenuItem.Name = "insertDatasetToolStripMenuItem";
-            insertDatasetToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
-            insertDatasetToolStripMenuItem.Text = "Insert Dataset";
-            insertDatasetToolStripMenuItem.Click += insertDatasetToolStripMenuItem_Click;
             // 
             // MainForm
             // 

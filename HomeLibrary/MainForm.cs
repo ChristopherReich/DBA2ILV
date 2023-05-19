@@ -1,13 +1,17 @@
 ﻿using Devart.Data.Linq;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Devart.Common.NativeMethods;
+using static System.Windows.Forms.AxHost;
 
 
 namespace HomeLibrary
@@ -60,20 +64,28 @@ namespace HomeLibrary
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            var selectedRows = dataGridView1.SelectedRows;
-            if (selectedRows.Count > 0)
+            try
             {
-                foreach (DataGridViewRow row in selectedRows)
+                var selectedRows = dataGridView1.SelectedRows;
+                if (selectedRows.Count > 0)
                 {
-                    var selectedItems = from s in context.Books
-                                        where s.ISBN == row.Cells[0].Value && s.Title == row.Cells[1].Value
-                                        select s;
-                    MessageBox.Show($"{selectedItems.Count()} entries will be deleted.");
-                    context.Books.DeleteAllOnSubmit(selectedItems);
+                    foreach (DataGridViewRow row in selectedRows)
+                    {
+                        var selectedItems = from s in context.Books
+                                            where s.ISBN == row.Cells[0].Value && s.Title == row.Cells[1].Value
+                                            select s;
+                        MessageBox.Show($"{selectedItems.Count()} entries will be deleted.");
+                        context.Books.DeleteOnSubmit(selectedItems.First());
+                    }
                 }
+                context.SubmitChanges();
+                InitializeContext();
             }
-            context.SubmitChanges();
-            InitializeContext();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
         }
 
         private void authorsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -180,16 +192,51 @@ namespace HomeLibrary
                 }
             }
 
-            if (context.Books.Count() == 0)
-            {
-                Book p1 = new Book(); p1.ISBN = "123-456-789"; p1.Title = "Eragon 1"; p1.Pages = 500;
-                Book p2 = new Book(); p2.ISBN = "321-456-789"; p2.Title = "Eragon 2"; p2.Pages = 600;
-                context.Books.InsertOnSubmit(p1);
-                context.Books.InsertOnSubmit(p2);
-                context.SubmitChanges();
-            }
+            //if (context.Books.Count() == 0)
+            //{
+            //    Book p1 = new Book(); p1.ISBN = "123-456-789"; p1.Title = "Eragon 1"; p1.Pages = 500;
+            //    Book p2 = new Book(); p2.ISBN = "321-456-789"; p2.Title = "Eragon 2"; p2.Pages = 600;
+            //    context.Books.InsertOnSubmit(p1);
+            //    context.Books.InsertOnSubmit(p2);
+            //    context.SubmitChanges();
+            //}
 
             InitializeContext();
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string path = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "ReadMe.txt");
+                string text = "";
+
+                // Create an instance of StreamReader to read from a file.
+                // The using statement also closes the StreamReader.
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    string line;
+                    // Read and display lines from the file until the end of
+                    // the file is reached.
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        text += line;
+                        text += "\n";
+                        //Read
+                    }
+
+                }
+
+                MessageBox.Show(text);
+            }
+            catch (Exception ex)
+            {
+                // Let the user know what went wrong.
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(ex.Message);
+            }
+
         }
     }
 }
